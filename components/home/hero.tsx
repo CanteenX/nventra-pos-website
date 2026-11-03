@@ -62,7 +62,7 @@ export function Hero() {
             </LaptopFrame>
           </div>
 
-          <div className="scheme-light absolute -bottom-8 right-0 z-30 hidden w-[150px] text-[8.8px] sm:block md:w-[180px] md:text-[10.6px] lg:right-4 lg:w-[215px] lg:text-[12.6px]">
+          <div className="scheme-light absolute -bottom-8 -right-4 z-30 hidden w-[150px] text-[8.8px] sm:block md:w-[180px] md:text-[10.6px] lg:-right-16 xl:-right-24 lg:w-[215px] lg:text-[12.6px]">
             <div className="animate-float" style={{ animationDelay: "-2s" }}>
               <PhoneFrame>
                 <div role="img" aria-label="Guest QR ordering on a phone: the Spice Route menu for table T7 with two Paneer Tikka in the basket. Sample data." className="h-full">

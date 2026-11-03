@@ -57,7 +57,7 @@ export const MENU_TILES = [
   { name: "Paneer Tikka", price: 280, veg: true },
   { name: "Hara Bhara Kebab", price: 240, veg: true },
   { name: "Chicken 65", price: 320, veg: false },
-  { name: "Margherita Pizza", price: 380, veg: true },
+  { name: "Margherita Pizza", price: 420, veg: true },
   { name: "Dal Makhani", price: 260, veg: true },
   { name: "Butter Chicken", price: 360, veg: false },
   { name: "Butter Naan", price: 60, veg: true },
@@ -189,7 +189,7 @@ export const RESERVATIONS = [
 export const MENU_ROWS = [
   { name: "Paneer Tikka", cat: "Starters", price: 280, on: true, veg: true },
   { name: "Chicken 65", cat: "Starters", price: 320, on: true, veg: false },
-  { name: "Margherita Pizza", cat: "Pizza", price: 380, on: true, veg: true },
+  { name: "Margherita Pizza", cat: "Pizza", price: 420, on: true, veg: true },
   { name: "Dal Makhani", cat: "Mains", price: 260, on: true, veg: true },
   { name: "Mutton Rogan Josh", cat: "Mains", price: 420, on: false, veg: false },
 ] as const;
