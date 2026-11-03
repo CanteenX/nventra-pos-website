@@ -9,7 +9,7 @@ export const SITE = {
   description:
     "Nventra POS is a self-hosted, offline-first restaurant POS and management system: billing with UPI QR, tables, kitchen display, inventory, staff, accounting and reports on your own server, with no per-terminal subscription.",
   // TODO(launch): replace with the real domain once it is registered.
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://pos.nventra.example").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://nventra-pos-website.vercel.app").replace(/\/$/, ""),
   email: "nventra01@gmail.com",
   sourceRepo: "https://github.com/CanteenX/restaurant-pos",
   sourceNote: "Source code available to customers on request",

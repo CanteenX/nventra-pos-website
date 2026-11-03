@@ -12,7 +12,8 @@ interface PageMeta {
 export function pageMetadata({ title, description, path, image = ogImage }: PageMeta): Metadata {
   const fullTitle = path === "/" ? `${SITE.name}: ${SITE.tagline}` : `${title} | ${SITE.name}`;
   return {
-    title: fullTitle,
+    // `absolute` stops the layout's "%s | Nventra POS" template adding the brand twice.
+    title: { absolute: fullTitle },
     description,
     alternates: { canonical: path },
     openGraph: {
