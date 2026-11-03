@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens shared with the Nventra portfolio (Inter, mint brand accent,
+ * warm orange primary, mono "eyebrow" tags, hairline borders, 0.75rem radius).
+ * The portfolio is dark-only; this product site adds a light theme and follows
+ * the OS setting unless the visitor picks one (see components/theme-script.tsx).
+ */
+
+/* `dark:` matches an explicit choice, or the OS setting when none was made. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, monospace;
+
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-mint: var(--mint);
+  --color-mint-fg: var(--mint-fg);
+  --color-mint-text: var(--mint-text);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-ring: var(--ring);
+
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 2rem;
+}
+
+:root {
+  color-scheme: light;
+  --bg: oklch(0.99 0 0);
+  --bg-subtle: oklch(0.965 0.004 158);
+  --fg: oklch(0.17 0 0);
+  --fg-muted: oklch(0.45 0 0);
+  --card: oklch(1 0 0);
+  --card-hover: oklch(0.975 0.006 158);
+  --line: oklch(0.9 0 0);
+  --line-strong: oklch(0.8 0 0);
+  --mint: oklch(0.88 0.22 158);
+  --mint-fg: oklch(0.13 0 0);
+  /* mint is too light for text on white: a deeper green keeps AA contrast */
+  --mint-text: oklch(0.5 0.14 158);
+  --primary: oklch(0.6716 0.1368 48.513);
+  --primary-fg: oklch(1 0 0);
+  --ring: oklch(0.5 0.14 158);
+  --header-bg: oklch(1 0 0 / 0.75);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: oklch(0.13 0 0);
+    --bg-subtle: oklch(0.16 0.004 158);
+    --fg: oklch(0.95 0 0);
+    --fg-muted: oklch(0.68 0 0);
+    --card: oklch(0.17 0 0);
+    --card-hover: oklch(0.2 0.006 158);
+    --line: oklch(0.25 0 0);
+    --line-strong: oklch(0.34 0 0);
+    --mint-text: oklch(0.88 0.22 158);
+    --primary: oklch(0.7214 0.1337 49.98);
+    --primary-fg: oklch(0.15 0 0);
+    --ring: oklch(0.88 0.22 158);
+    --header-bg: oklch(0.2 0 0 / 0.7);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: oklch(0.13 0 0);
+  --bg-subtle: oklch(0.16 0.004 158);
+  --fg: oklch(0.95 0 0);
+  --fg-muted: oklch(0.68 0 0);
+  --card: oklch(0.17 0 0);
+  --card-hover: oklch(0.2 0.006 158);
+  --line: oklch(0.25 0 0);
+  --line-strong: oklch(0.34 0 0);
+  --mint-text: oklch(0.88 0.22 158);
+  --primary: oklch(0.7214 0.1337 49.98);
+  --primary-fg: oklch(0.15 0 0);
+  --ring: oklch(0.88 0.22 158);
+  --header-bg: oklch(0.2 0 0 / 0.7);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  html,
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--mint) 40%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  .text-mono-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .container-x {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 80rem;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-x {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  .glow-mint {
+    background: radial-gradient(
+      closest-side,
+      color-mix(in oklch, var(--mint) 22%, transparent),
+      transparent
+    );
+  }
+}
+
+/* Logo strip marquee (pattern from Magic UI's Marquee, MIT) */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - var(--gap, 1rem) / 2));
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-marquee {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
