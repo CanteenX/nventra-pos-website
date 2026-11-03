@@ -41,8 +41,8 @@ function Tile({ group }: { group: FeatureGroup }) {
 export function ModuleBento() {
   return (
     <div className="grid grid-flow-dense gap-4 md:grid-cols-3 lg:grid-cols-4">
-      {FEATURE_GROUPS.map((g, i) => (
-        <Reveal key={g.id} delay={(i % 4) * 0.04} className={cn(LARGE.has(g.id) && "md:col-span-2 md:row-span-2")}>
+      {FEATURE_GROUPS.map((g) => (
+        <Reveal key={g.id} className={cn(LARGE.has(g.id) && "md:col-span-2 md:row-span-2")}>
           <Tile group={g} />
         </Reveal>
       ))}

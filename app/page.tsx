@@ -44,7 +44,7 @@ export default function HomePage() {
       <TrustBadges />
 
       <Section id="install" labelledBy="install-title">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start [&>*]:min-w-0">
           <SectionHeading
             id="install-title"
             eyebrow="Install"
@@ -136,7 +136,7 @@ export default function HomePage() {
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {HOW_IT_WORKS.map((step, i) => (
             <li key={step.title} className="h-full rounded-2xl border border-line bg-card p-6">
-              <Reveal delay={i * 0.06}>
+              <Reveal>
                 <span className="font-mono text-sm font-semibold text-mint-text">0{i + 1}</span>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight">{step.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-fg-muted">{step.body}</p>
@@ -152,7 +152,7 @@ export default function HomePage() {
       </Section>
 
       <Section id="faq" tone="subtle" labelledBy="faq-title">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] [&>*]:min-w-0">
           <SectionHeading
             id="faq-title"
             eyebrow="FAQ"

@@ -1,31 +1,17 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/cn";
 
 interface RevealProps {
   children: ReactNode;
   className?: string;
-  delay?: number;
 }
 
 /**
- * Fade-and-rise on scroll with the portfolio's easing curve. Content is in
- * the HTML from the start (only opacity/transform animate, so no layout
- * shift), and motion is skipped when the visitor prefers reduced motion.
+ * Fade-and-rise as the element scrolls into view, done with a CSS
+ * scroll-driven animation (see .reveal in globals.css). Content is never
+ * hidden in the server HTML, so crawlers, no-JS visitors and browsers
+ * without scroll timelines just see it; reduced-motion users get no motion.
  */
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
-  const reduce = useReducedMotion();
-  if (reduce) return <div className={className}>{children}</div>;
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+export function Reveal({ children, className }: RevealProps) {
+  return <div className={cn("reveal", className)}>{children}</div>;
 }

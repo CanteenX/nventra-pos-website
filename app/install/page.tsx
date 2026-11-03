@@ -37,7 +37,7 @@ export default function InstallPage() {
           title="Install Docker"
           lead="Skip this if docker --version already works. All three include Docker Compose v2, which is all Nventra POS needs."
         />
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-3 [&>*]:min-w-0">
           {DOCKER.map((d) => (
             <div key={d.os}>
               <h3 className="mb-3 text-base font-semibold">{d.os}</h3>
@@ -52,7 +52,7 @@ export default function InstallPage() {
       </Section>
 
       <Section tone="subtle" labelledBy="method-title">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start [&>*]:min-w-0">
           <SectionHeading
             id="method-title"
             eyebrow="Step 2"
@@ -70,7 +70,7 @@ export default function InstallPage() {
           title="Settings in .env"
           lead="The installer writes these for you. Edit .env and re-run the installer (or docker compose up -d) to change them. Never commit the real .env."
         />
-        <div className="overflow-x-auto rounded-2xl border border-line bg-card">
+        <div className="relative overflow-x-auto rounded-2xl border border-line bg-card">
           <table className="w-full min-w-[720px] border-collapse text-left text-sm">
             <caption className="sr-only">Environment variables</caption>
             <thead>
@@ -108,7 +108,7 @@ export default function InstallPage() {
       </Section>
 
       <Section labelledBy="update-title">
-        <div className="grid gap-10 lg:grid-cols-2">
+        <div className="grid gap-10 lg:grid-cols-2 [&>*]:min-w-0">
           <div>
             <SectionHeading
               id="update-title"

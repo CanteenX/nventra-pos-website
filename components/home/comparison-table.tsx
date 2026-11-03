@@ -28,7 +28,7 @@ function CellValue({ value }: { value: Cell }) {
 
 export function ComparisonTable() {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-line bg-card">
+    <div className="relative overflow-x-auto rounded-2xl border border-line bg-card">
       <table className="w-full min-w-[640px] border-collapse text-left text-sm">
         <caption className="sr-only">
           Nventra POS compared with a typical subscription POS and with pen and paper
