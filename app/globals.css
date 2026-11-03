@@ -7,17 +7,8 @@
  * the OS setting unless the visitor picks one (see components/theme-script.tsx).
  */
 
-/* `dark:` matches an explicit choice, or the OS setting when none was made. */
-@custom-variant dark {
-  &:where([data-theme="dark"], [data-theme="dark"] *) {
-    @slot;
-  }
-  @media (prefers-color-scheme: dark) {
-    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
-      @slot;
-    }
-  }
-}
+/* `dark:` matches an explicit dark choice, or anything inside a .scheme-dark band. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .scheme-dark, .scheme-dark *));
 
 @theme inline {
   --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -37,13 +28,17 @@
   --color-primary: var(--primary);
   --color-primary-fg: var(--primary-fg);
   --color-ring: var(--ring);
+  --color-ok: var(--ok);
+  --color-busy: var(--busy);
+  --color-held: var(--held);
 
   --radius-xl: 0.75rem;
   --radius-2xl: 1.25rem;
   --radius-3xl: 2rem;
 }
 
-:root {
+:root,
+.scheme-light {
   color-scheme: light;
   --bg: oklch(0.99 0 0);
   --bg-subtle: oklch(0.965 0.004 158);
@@ -61,42 +56,50 @@
   --primary-fg: oklch(1 0 0);
   --ring: oklch(0.5 0.14 158);
   --header-bg: oklch(1 0 0 / 0.75);
+  /* table / ticket states in the UI illustrations */
+  --ok: oklch(0.56 0.14 158);
+  --busy: oklch(0.62 0.16 45);
+  --held: oklch(0.66 0.15 80);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: oklch(0.13 0 0);
-    --bg-subtle: oklch(0.16 0.004 158);
-    --fg: oklch(0.95 0 0);
-    --fg-muted: oklch(0.68 0 0);
-    --card: oklch(0.17 0 0);
-    --card-hover: oklch(0.2 0.006 158);
-    --line: oklch(0.25 0 0);
-    --line-strong: oklch(0.34 0 0);
-    --mint-text: oklch(0.88 0.22 158);
-    --primary: oklch(0.7214 0.1337 49.98);
-    --primary-fg: oklch(0.15 0 0);
-    --ring: oklch(0.88 0.22 158);
-    --header-bg: oklch(0.2 0 0 / 0.7);
-  }
-}
-
-:root[data-theme="dark"] {
+/*
+ * Light is the default. Dark applies when the visitor picks it (data-theme on
+ * <html>) and inside .scheme-dark bands (dark hero, inset containers).
+ */
+:root[data-theme="dark"],
+.scheme-dark {
   color-scheme: dark;
   --bg: oklch(0.13 0 0);
   --bg-subtle: oklch(0.16 0.004 158);
   --fg: oklch(0.95 0 0);
-  --fg-muted: oklch(0.68 0 0);
-  --card: oklch(0.17 0 0);
-  --card-hover: oklch(0.2 0.006 158);
-  --line: oklch(0.25 0 0);
-  --line-strong: oklch(0.34 0 0);
+  --fg-muted: oklch(0.72 0 0);
+  --card: oklch(0.18 0.003 158);
+  --card-hover: oklch(0.21 0.006 158);
+  --line: oklch(0.27 0 0);
+  --line-strong: oklch(0.36 0 0);
   --mint-text: oklch(0.88 0.22 158);
   --primary: oklch(0.7214 0.1337 49.98);
   --primary-fg: oklch(0.15 0 0);
   --ring: oklch(0.88 0.22 158);
   --header-bg: oklch(0.2 0 0 / 0.7);
+  --ok: oklch(0.8 0.17 158);
+  --busy: oklch(0.76 0.14 50);
+  --held: oklch(0.84 0.14 85);
+}
+
+.scheme-dark {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+/* Light islands inside dark bands (product mock-ups on the dark hero). */
+.scheme-light {
+  color: var(--fg);
+}
+
+.bg-dots {
+  background-image: radial-gradient(color-mix(in oklch, var(--fg) 14%, transparent) 1px, transparent 1px);
+  background-size: 14px 14px;
 }
 
 @layer base {
@@ -136,6 +139,12 @@
     text-wrap: balance;
   }
 
+  h1,
+  h2 {
+    font-weight: 600;
+    letter-spacing: -0.045em;
+  }
+
   p {
     text-wrap: pretty;
   }
@@ -153,7 +162,7 @@
   .text-mono-tag {
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
@@ -201,6 +210,35 @@
   }
 }
 
+/*
+ * UI illustrations: a fixed-aspect "canvas" whose type and spacing are in em,
+ * so the whole mock scales with its container like a screenshot would.
+ */
+.ui-canvas {
+  container-type: inline-size;
+}
+
+.ui-canvas > * {
+  font-size: 1.8cqw;
+}
+
+/* Gentle float for the hero's overlapping cards */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
 /* Logo strip marquee (pattern from Magic UI's Marquee, MIT) */
 @keyframes marquee {
   from {
@@ -215,12 +253,18 @@
   animation: marquee var(--duration, 40s) linear infinite;
 }
 
+.animate-marquee-reverse {
+  animation: marquee var(--duration, 40s) linear infinite reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .animate-marquee {
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .animate-float {
     animation: none;
   }
 
