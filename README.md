@@ -40,7 +40,8 @@ static host.
 
 ## Screenshots
 
-All screenshots are real captures of the app running with demo data, made by
+Until real screenshots are captured, every product image is an HTML/CSS illustration of the screen with
+clearly labelled sample data (`components/fragments/`, data in `lib/sample-data.ts`). Real captures are made by
 `scripts/capture-screenshots.mjs` (Playwright + your installed Chrome, output optimised to WebP with sharp).
 
 ```bash

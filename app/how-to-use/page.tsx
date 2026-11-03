@@ -18,7 +18,7 @@ export default function HowToUsePage() {
       <PageHero
         eyebrow="How to use"
         title="From sign-up to your first paid order."
-        lead="Six steps, about ten minutes once the app is installed. Screenshots show the real app with demo data."
+        lead="Six steps, about ten minutes once the app is installed. The pictures are illustrations of each screen drawn with sample data; real screenshots will replace them once they are captured."
       >
         <nav aria-label="Steps">
           <ol className="flex flex-wrap gap-2">
