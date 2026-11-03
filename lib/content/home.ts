@@ -26,17 +26,19 @@ export const TRUST_BADGES: Badge[] = [
 
 export interface Stat {
   value: number;
+  prefix?: string;
   suffix?: string;
   label: string;
   source: string;
 }
 
-/** Only numbers that can be checked against the product docs. */
+/** Only numbers that can be checked against the product itself. */
 export const STATS: Stat[] = [
   { value: 20, label: "product modules", source: "Module list in the product README" },
   { value: 18, label: "built-in reports", source: "Reports screen" },
-  { value: 4, label: "tax regimes", source: "GST, US sales tax, EU VAT, Spain IVA" },
-  { value: 0, label: "per-terminal fees", source: "Self-hosted licence" },
+  { value: 3, label: "languages", source: "English, Spanish and French" },
+  { value: 0, prefix: "₹", label: "subscription", source: "Free to self-host under AGPL-3.0" },
+  { value: 1, label: "command to install", source: "./install.sh" },
 ];
 
 export interface WorksWith {
