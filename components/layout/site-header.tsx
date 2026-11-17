@@ -59,7 +59,7 @@ function DesktopNav() {
               {menu.footer ? (
                 <div className="border-t border-line px-6 py-3">
                   <NM.Link asChild>
-                    <Link href={menu.footer.href} className="text-sm font-semibold text-mint-text hover:underline">
+                    <Link href={menu.footer.href} className="text-sm font-semibold text-brand-text hover:underline">
                       {menu.footer.label} →
                     </Link>
                   </NM.Link>

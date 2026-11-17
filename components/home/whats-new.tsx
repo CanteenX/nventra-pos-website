@@ -17,7 +17,7 @@ export function WhatsNew() {
               href={href}
               className="group flex h-full min-h-11 gap-4 p-4 transition-colors hover:bg-card-hover sm:p-6"
             >
-              <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-bg-subtle text-mint-text">
+              <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-bg-subtle text-brand-text">
                 <Icon className="size-5" aria-hidden />
               </span>
               <span className="min-w-0">

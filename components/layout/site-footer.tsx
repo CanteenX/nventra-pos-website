@@ -28,11 +28,11 @@ export function SiteFooter() {
               {col.links.map((link) => (
                 <li key={link.href}>
                   {link.href.startsWith("http") || link.href.startsWith("mailto:") ? (
-                    <a href={link.href} className="inline-flex min-h-10 min-w-10 items-center break-words text-sm text-fg/85 hover:text-mint-text">
+                    <a href={link.href} className="inline-flex min-h-10 min-w-10 items-center break-words text-sm text-fg/85 hover:text-brand-text">
                       {link.label}
                     </a>
                   ) : (
-                    <Link href={link.href} className="inline-flex min-h-10 min-w-10 items-center text-sm text-fg/85 hover:text-mint-text">
+                    <Link href={link.href} className="inline-flex min-h-10 min-w-10 items-center text-sm text-fg/85 hover:text-brand-text">
                       {link.label}
                     </Link>
                   )}

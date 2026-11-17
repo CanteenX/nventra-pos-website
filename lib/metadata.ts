@@ -23,7 +23,7 @@ export function pageMetadata({ title, description, path, image = ogImage }: Page
       siteName: SITE.name,
       type: "website",
       locale: "en_IN",
-      images: [{ url: image, width: 1440, height: 900, alt: `${SITE.name} screenshot` }],
+      images: [{ url: image, width: 1200, height: 630, alt: `${SITE.name}: ${SITE.tagline}` }],
     },
     twitter: {
       card: "summary_large_image",

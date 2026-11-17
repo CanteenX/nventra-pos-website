@@ -13,8 +13,8 @@ function Bubble({ icon: Icon, big = false }: { icon: LucideIcon; big?: boolean }
       className={cn(
         "flex items-center justify-center rounded-2xl shadow-lg",
         big
-          ? "size-16 bg-mint text-mint-fg shadow-[0_10px_40px_-10px_var(--mint)] sm:size-20"
-          : "size-11 border border-line bg-card text-mint-text shadow-black/10 sm:size-12",
+          ? "size-16 bg-brand text-brand-fg shadow-[0_10px_40px_-10px_var(--brand)] sm:size-20"
+          : "size-11 border border-line bg-card text-brand-text shadow-black/10 sm:size-12",
       )}
     >
       <Icon className={big ? "size-8 sm:size-9" : "size-5"} strokeWidth={1.75} />
@@ -39,7 +39,7 @@ export function HubScene({ center, around, className }: HubSceneProps) {
       className={cn("bg-dots relative aspect-[16/9] overflow-hidden rounded-2xl border border-line bg-bg-subtle", className)}
       aria-hidden
     >
-      <div className="glow-mint absolute inset-0" />
+      <div className="glow-brand absolute inset-0" />
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 size-full">
         {pts.map((p, i) => (
           <line
@@ -48,7 +48,7 @@ export function HubScene({ center, around, className }: HubSceneProps) {
             y1="50"
             x2={p.x}
             y2={p.y}
-            stroke="var(--mint-text)"
+            stroke="var(--brand-text)"
             strokeOpacity="0.55"
             strokeWidth="1.5"
             strokeDasharray="4 4"
@@ -78,10 +78,10 @@ export function FlowScene({ steps, className }: { steps: LucideIcon[]; className
       )}
       aria-hidden
     >
-      <div className="glow-mint absolute inset-0" />
+      <div className="glow-brand absolute inset-0" />
       {steps.map((Icon, i) => (
         <span key={i} className="relative flex items-center gap-2 sm:gap-3">
-          {i > 0 ? <ArrowRight className="size-4 text-mint-text" /> : null}
+          {i > 0 ? <ArrowRight className="size-4 text-brand-text" /> : null}
           <Bubble icon={Icon} big={i === Math.floor(steps.length / 2)} />
         </span>
       ))}

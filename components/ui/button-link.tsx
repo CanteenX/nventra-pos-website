@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
 type Variant = "primary" | "secondary" | "ghost";
 
 const VARIANTS: Record<Variant, string> = {
-  primary: "bg-mint text-mint-fg hover:brightness-105 shadow-[0_10px_30px_-14px_var(--mint)]",
+  primary: "bg-brand text-brand-fg hover:bg-brand-hover active:bg-brand-pressed shadow-[0_10px_30px_-16px_var(--brand)]",
   secondary: "border border-line-strong bg-card text-fg hover:bg-card-hover",
   ghost: "text-fg hover:bg-card-hover",
 };

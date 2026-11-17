@@ -22,4 +22,5 @@ export const SITE = {
   demoLogin: { email: "owner@demo.local", password: "Password123!" },
 } as const;
 
-export const ogImage = "/screenshots/dashboard-light.webp";
+/** Social preview, rendered from scripts/og-image.svg (1200x630). */
+export const ogImage = "/og.png";

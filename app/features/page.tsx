@@ -44,7 +44,7 @@ export default function FeaturesPage() {
             <section key={g.id} id={g.id} aria-labelledby={`${g.id}-title`} className="py-14 sm:py-20">
               <div className={cn("grid gap-10", g.shot && "lg:grid-cols-2 lg:items-center")}>
                 <div className={cn(g.shot && i % 2 === 1 && "lg:order-2")}>
-                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-bg-subtle text-mint-text">
+                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-bg-subtle text-brand-text">
                     <Icon className="size-5" aria-hidden />
                   </span>
                   <h2 id={`${g.id}-title`} className="mt-5 text-3xl sm:text-4xl">
@@ -54,7 +54,7 @@ export default function FeaturesPage() {
                   <ul className={cn("mt-6 grid gap-2.5", !g.shot && "sm:grid-cols-2 lg:grid-cols-3")}>
                     {g.items.map((item) => (
                       <li key={item} className="flex gap-2.5 text-[15px]">
-                        <Check className="mt-0.5 size-4 shrink-0 text-mint-text" aria-hidden />
+                        <Check className="mt-0.5 size-4 shrink-0 text-brand-text" aria-hidden />
                         {item}
                       </li>
                     ))}

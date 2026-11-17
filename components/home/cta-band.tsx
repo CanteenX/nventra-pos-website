@@ -13,11 +13,11 @@ export function CtaBand({
   return (
     <section aria-labelledby="cta-title" className="py-16 sm:py-24">
       <div className="container-x">
-        <div className="scheme-dark relative overflow-hidden rounded-[2rem] p-8 sm:p-16">
-          <div className="glow-mint pointer-events-none absolute -right-24 -top-24 size-[420px]" aria-hidden />
+        <div className="scheme-dark relative overflow-hidden rounded-[2rem] p-8 ring-1 ring-inset ring-line sm:p-16">
+          <div className="glow-brand pointer-events-none absolute -right-24 -top-24 size-[420px]" aria-hidden />
           <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
-              <p className="text-mono-tag mb-4 font-semibold text-mint-text">Get started //</p>
+              <p className="text-mono-tag mb-4 font-semibold text-brand-text">Get started //</p>
               <h2 id="cta-title" className="text-3xl leading-[1.05] sm:text-5xl">
                 {title}
               </h2>

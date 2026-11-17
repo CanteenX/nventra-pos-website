@@ -58,7 +58,7 @@ export function Btn({
     <span
       className={cn(
         "inline-flex items-center justify-center gap-[0.4em] rounded-[0.6em] px-[0.9em] py-[0.5em] font-semibold",
-        tone === "primary" ? "bg-mint text-mint-fg" : "border border-line-strong text-fg",
+        tone === "primary" ? "bg-brand text-brand-fg" : "border border-line-strong text-fg",
         className,
       )}
     >
@@ -84,7 +84,7 @@ export function AppScreen({
   return (
     <div className="flex h-full w-full bg-bg-subtle text-fg">
       <div className="flex w-[3.4em] shrink-0 flex-col items-center gap-[0.9em] border-r border-line bg-card py-[0.9em]">
-        <span className="flex size-[2em] items-center justify-center rounded-[0.5em] bg-mint text-[0.95em] font-bold text-mint-fg">
+        <span className="flex size-[2em] items-center justify-center rounded-[0.5em] bg-brand text-[0.95em] font-bold text-brand-fg">
           N
         </span>
         {NAV.map((Icon, i) => (
@@ -92,7 +92,7 @@ export function AppScreen({
             key={i}
             className={cn(
               "flex size-[2.1em] items-center justify-center rounded-[0.55em] text-fg-muted",
-              i === active && "bg-mint/20 text-mint-text",
+              i === active && "bg-brand/20 text-brand-text",
             )}
           >
             <Icon className="size-[1.15em]" strokeWidth={2} />

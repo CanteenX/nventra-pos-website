@@ -19,10 +19,10 @@ export function BrandMark({ className, title }: BrandMarkProps) {
       aria-hidden={title ? undefined : true}
       aria-label={title}
     >
-      <rect width="32" height="32" rx="8" fill="var(--mint)" />
+      <rect width="32" height="32" rx="8" fill="var(--brand)" />
       <path
         d="M10 23V9h2.6l6.8 9.6V9H22v14h-2.6l-6.8-9.6V23z"
-        fill="var(--mint-fg)"
+        fill="var(--brand-fg)"
       />
     </svg>
   );

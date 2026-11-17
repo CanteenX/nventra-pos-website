@@ -23,14 +23,14 @@ function Floating({ className, delay, children }: { className: string; delay: st
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="scheme-dark relative overflow-hidden">
-      <div className="glow-mint pointer-events-none absolute -top-40 left-1/2 h-[620px] w-[1000px] -translate-x-1/2" aria-hidden />
+      <div className="glow-brand pointer-events-none absolute -top-40 left-1/2 h-[620px] w-[1000px] -translate-x-1/2" aria-hidden />
       <div className="container-x relative pb-12 pt-16 text-center sm:pt-24">
         <p className="text-mono-tag inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 font-semibold text-fg-muted">
-          <span className="size-1.5 rounded-full bg-mint" aria-hidden />
+          <span className="size-1.5 rounded-full bg-brand" aria-hidden />
           Open source · AGPL-3.0 · Self-hosted
         </p>
         <h1 id="hero-title" className="mx-auto mt-6 max-w-4xl text-[2.6rem] leading-[1] sm:text-7xl lg:text-[5.25rem]">
-          The restaurant POS that lives in <span className="text-mint-text">your</span> restaurant.
+          The restaurant POS that lives in <span className="text-brand-text">your</span> restaurant.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg">
           Nventra POS is a self-hosted, offline-first point of sale and management system. Billing with UPI QR,
@@ -47,7 +47,7 @@ export function Hero() {
         <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-fg-muted">
           {POINTS.map((p) => (
             <li key={p} className="inline-flex items-center gap-1.5">
-              <Check className="size-4 text-mint-text" aria-hidden />
+              <Check className="size-4 text-brand-text" aria-hidden />
               {p}
             </li>
           ))}

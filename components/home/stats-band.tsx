@@ -44,7 +44,7 @@ export function StatsBand() {
           className={`flex flex-col border-l border-line pl-5 ${i === STATS.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
         >
           <dt className="order-2 mt-3 text-base font-medium">{s.label}</dt>
-          <dd className="order-1 text-6xl font-semibold leading-none tracking-[-0.05em] text-mint-text sm:text-7xl">
+          <dd className="order-1 text-6xl font-semibold leading-none tracking-[-0.05em] text-brand-text sm:text-7xl">
             {s.prefix}
             <Ticker value={s.value} />
             {s.suffix}

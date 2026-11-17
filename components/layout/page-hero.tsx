@@ -10,9 +10,9 @@ interface PageHeroProps {
 export function PageHero({ eyebrow, title, lead, children }: PageHeroProps) {
   return (
     <section aria-labelledby="page-title" className="relative overflow-hidden border-b border-line">
-      <div className="glow-mint pointer-events-none absolute -top-48 left-1/4 h-[420px] w-[720px]" aria-hidden />
+      <div className="glow-brand pointer-events-none absolute -top-48 left-1/4 h-[420px] w-[720px]" aria-hidden />
       <div className="container-x relative py-14 sm:py-20">
-        <p className="text-mono-tag mb-4 font-semibold text-mint-text">{eyebrow} {"//"}</p>
+        <p className="text-mono-tag mb-4 font-semibold text-brand-text">{eyebrow} {"//"}</p>
         <h1 id="page-title" className="max-w-4xl text-4xl leading-[1.03] sm:text-6xl">
           {title}
         </h1>

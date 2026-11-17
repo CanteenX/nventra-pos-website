@@ -20,7 +20,7 @@ function Tile({ group }: { group: FeatureGroup }) {
       )}
     >
       <div className="flex items-start justify-between gap-4">
-        <span className="inline-flex size-10 items-center justify-center rounded-xl bg-bg-subtle text-mint-text">
+        <span className="inline-flex size-10 items-center justify-center rounded-xl bg-bg-subtle text-brand-text">
           <Icon className="size-5" aria-hidden />
         </span>
         <ArrowUpRight className="size-4 text-fg-muted transition group-hover:text-fg" aria-hidden />

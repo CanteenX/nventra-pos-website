@@ -22,26 +22,27 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     type: "website",
     locale: "en_IN",
-    images: [{ url: ogImage, width: 1440, height: 900 }],
+    images: [{ url: ogImage, width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fcfcfc",
+  // Matches the default black theme (--bg in app/globals.css).
+  themeColor: "#111113",
   viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={inter.variable} suppressHydrationWarning>
       <head>
         <ThemeScript />
       </head>
       <body className="flex min-h-dvh flex-col font-sans">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-mint focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-mint-fg"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand-fg"
         >
           Skip to content
         </a>

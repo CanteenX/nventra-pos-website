@@ -5,7 +5,7 @@ function CellValue({ value }: { value: Cell }) {
   if (value === "yes")
     return (
       <span className="inline-flex items-center gap-1.5">
-        <Check className="size-4 text-mint-text" aria-hidden />
+        <Check className="size-4 text-brand-text" aria-hidden />
         <span className="sr-only">Yes</span>
       </span>
     );

@@ -219,7 +219,7 @@ export default function HomePage() {
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {HOW_IT_WORKS.map((step, i) => (
             <li key={step.title} className="reveal h-full rounded-3xl border border-line bg-card p-6 sm:p-7">
-              <span className="font-mono text-sm font-semibold text-mint-text">0{i + 1}</span>
+              <span className="font-mono text-sm font-semibold text-brand-text">0{i + 1}</span>
               <h3 className="mt-4 text-2xl font-semibold tracking-tight">{step.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{step.body}</p>
             </li>
