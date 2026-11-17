@@ -42,7 +42,23 @@ static host.
 
 Until real screenshots are captured, every product image is an HTML/CSS illustration of the screen with
 clearly labelled sample data (`components/fragments/`, data in `lib/sample-data.ts`). Real captures are made by
-`scripts/capture-screenshots.mjs` (Playwright + your installed Chrome, output optimised to WebP with sharp).
+`scripts/capture-screenshots.mjs` (Playwright + your installed Chrome, compressed PNG via sharp), or by
+dropping a PNG with the exact name below into `public/screenshots/`. The next build picks it up, swaps the
+illustration for the real image and drops the "Sample data" badge.
+
+| File | Viewport | Screen |
+|---|---|---|
+| `pos.png`, `pos-dark.png` | 1440×900 | Point of Sale with an open, unsent cart |
+| `dashboard.png`, `dashboard-dark.png` | 1440×900 | Dashboard |
+| `kds.png` | 1440×900 | Kitchen display |
+| `online-orders.png` | 1440×900 | Online orders queue (delivery platforms, website, QR) |
+| `email-templates.png` | 1440×900 | Branded email and its branding settings (capture by hand) |
+| `inventory.png` | 1440×900 | Inventory |
+| `reports.png` | 1440×900 | Reports |
+| `tables.png`, `reservations.png`, `menu.png`, `customers.png`, `settings.png` | 1440×900 | As named |
+| `guest-qr-phone.png` | 390×844 | Guest QR ordering page, shown in a phone frame |
+
+Capture at device scale factor 1 (or 2 for retina, keeping the same aspect ratio).
 
 ```bash
 # product running at http://localhost:1995 with demo data (./install.sh --demo)
@@ -52,7 +68,7 @@ pnpm capture
 
 The script logs in once (login is rate-limited), visits each screen, builds an **unsent** POS cart (no order
 is sent and no payment is taken), and captures 1440×900 light shots plus dark versions of the dashboard and
-POS. Until the product rebrand ships, it rewrites upstream product names and the demo restaurant name in the
+POS, and the guest page at 390×844. Until the product rebrand ships, it rewrites upstream product names and the demo restaurant name in the
 page text and hides the logo image before each capture. Re-run it after the rebrand to refresh every image.
 Image ids are listed in `lib/screenshots.ts` (alt text lives there too).
 
@@ -91,7 +107,7 @@ Kept deliberately small. Everything is MIT/ISC and copied in as owned source or 
 | "Works with" marquee, bento grid, number ticker | Patterns from [Magic UI](https://github.com/magicuidesign/magicui) (Marquee, Bento Grid, Number Ticker), re-implemented in a few lines | MIT | Avoids pulling in a registry for three small effects; reduced-motion handled explicitly |
 | Icons | [lucide-react](https://lucide.dev) | ISC | Same icon family as the product UI |
 | Motion | [framer-motion](https://motion.dev) | MIT | Already used by the portfolio; `useReducedMotion` built in |
-| Screenshot capture | [playwright-core](https://playwright.dev) + [sharp](https://sharp.pixelplumbing.com) | Apache-2.0 / Apache-2.0 | Drives the installed Chrome; WebP output |
+| Screenshot capture | [playwright-core](https://playwright.dev) + [sharp](https://sharp.pixelplumbing.com) | Apache-2.0 / Apache-2.0 | Drives the installed Chrome; PNG output |
 
 No carousel library: the gallery is a CSS scroll-snap strip.
 

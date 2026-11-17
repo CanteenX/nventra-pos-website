@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
     // Static export cannot use the on-demand optimizer. Screenshots are
-    // pre-optimised to WebP by scripts/capture-screenshots.mjs instead.
+    // compressed PNGs written by scripts/capture-screenshots.mjs instead.
     unoptimized: true,
   },
   poweredByHeader: false,

@@ -27,7 +27,7 @@ export default function FeaturesPage() {
               <li key={g.id}>
                 <a
                   href={`#${g.id}`}
-                  className="inline-flex min-h-9 items-center rounded-full border border-line bg-card px-3.5 text-sm hover:border-line-strong"
+                  className="inline-flex min-h-10 items-center rounded-full border border-line bg-card px-3.5 text-sm hover:border-line-strong"
                 >
                   {g.title}
                 </a>

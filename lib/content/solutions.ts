@@ -75,11 +75,11 @@ export const SOLUTIONS: Solution[] = [
     highlights: [
       { title: "Delivery zones", body: "Fee, minimum order and ETA by pincode." },
       { title: "Driver flow", body: "Assign drivers and move orders from pickup to delivered." },
-      { title: "Kitchen stations", body: "KOTs route to the right station with priority and reprint." },
-      { title: "Website ordering", body: "The integration API lets your own website take orders and reservations." },
+      { title: "Online channels", body: "Zomato, Swiggy and channel-manager orders arrive in one queue to accept or decline." },
+      { title: "Website ordering", body: "The integration and GraphQL APIs let your own website take orders and reservations." },
     ],
-    shots: ["kds", "reports"],
-    honestNote: "Swiggy and Zomato order sync and live GPS tracking are on the roadmap, not available yet.",
+    shots: ["onlineOrders", "kds"],
+    honestNote: "Live GPS driver tracking is on the roadmap, not available yet.",
   },
   {
     slug: "food-courts",
@@ -106,10 +106,10 @@ export const SOLUTIONS: Solution[] = [
     intro:
       "Each branch keeps its own tax regime, UPI payee and staff, while owners compare sales, stock and margins across all of them.",
     highlights: [
-      { title: "Branch switcher", body: "Move between branches without signing out." },
-      { title: "Cross-branch overview", body: "Sales, open orders, low stock and inventory value by location." },
+      { title: "Cross-branch overview", body: "Switch branches without signing out; compare sales, open orders, low stock and stock value." },
       { title: "Stock transfers", body: "Move stock between branches first-in-first-out, at the same cost." },
-      { title: "Roles per person", body: "Give each manager only the permissions their branch needs." },
+      { title: "Roles per person", body: "Give each manager only the permissions their branch needs; nobody can raise their own access." },
+      { title: "Multi-branch sync", body: "Each branch keeps selling offline and syncs menu, customers and stock with head office when back online." },
     ],
     shots: ["dashboard", "settings"],
   },

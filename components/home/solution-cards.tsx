@@ -17,7 +17,7 @@ export function SolutionCards() {
                 <ProductVisual id={shots[0]} sizes="(min-width: 1024px) 380px, 90vw" />
               </div>
               {hasCapture(shots[0]) ? null : (
-              <span className="absolute right-3 top-3 rounded-full bg-card/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-fg-muted">
+              <span className="absolute right-3 top-3 rounded-full bg-card/90 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-fg-muted">
                 Sample data
               </span>
               )}

@@ -33,7 +33,7 @@ export function CopyButton({ value, label = "Copy", className }: CopyButtonProps
       type="button"
       onClick={copy}
       className={cn(
-        "inline-flex min-h-9 items-center gap-1.5 rounded-full border border-line-strong bg-card px-3 text-xs font-semibold text-fg transition hover:bg-card-hover",
+        "inline-flex min-h-10 items-center gap-1.5 rounded-full border border-line-strong bg-card px-3 text-xs font-semibold text-fg transition hover:bg-card-hover",
         className,
       )}
     >

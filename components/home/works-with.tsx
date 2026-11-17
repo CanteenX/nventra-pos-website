@@ -12,7 +12,7 @@ function Chip({ item }: { item: Item }) {
       <span className={cn("size-2 rounded-full", item.soon ? "bg-held" : "bg-ok")} aria-hidden />
       {item.label}
       {item.soon ? (
-        <span className="rounded-full bg-held/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-fg">
+        <span className="rounded-full bg-held/15 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-fg">
           Coming soon
         </span>
       ) : null}

@@ -11,6 +11,7 @@ import { SolutionCards } from "@/components/home/solution-cards";
 import { StatsBand } from "@/components/home/stats-band";
 import { TrustBadges } from "@/components/home/trust-badges";
 import { ValueBento } from "@/components/home/value-bento";
+import { WhatsNew } from "@/components/home/whats-new";
 import { WorksWithStrip } from "@/components/home/works-with";
 import { FloorAndCartScreen } from "@/components/fragments/pos";
 import { Accordion } from "@/components/ui/accordion";
@@ -108,6 +109,16 @@ export default function HomePage() {
       </Section>
 
       <TrustBadges />
+
+      <Section id="whats-new" labelledBy="whats-new-title">
+        <SectionHeading
+          id="whats-new-title"
+          eyebrow="What's new in v1.0"
+          title="Online orders, sharper stock, safer staff access."
+          lead="Everything here has shipped in v1.0 and is in the install you download today."
+        />
+        <WhatsNew />
+      </Section>
 
       <Section id="modules" tone="dark" labelledBy="modules-title">
         <SectionHeading

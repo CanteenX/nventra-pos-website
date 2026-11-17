@@ -26,7 +26,7 @@ export default function HowToUsePage() {
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="inline-flex min-h-9 items-center gap-2 rounded-full border border-line bg-card px-3.5 text-sm hover:border-line-strong"
+                  className="inline-flex min-h-10 items-center gap-2 rounded-full border border-line bg-card px-3.5 text-sm hover:border-line-strong"
                 >
                   <span className="font-mono text-xs text-mint-text">{i + 1}</span>
                   {s.title}

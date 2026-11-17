@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { ShotId } from "@/lib/screenshots";
+import { BrandedEmailScene, OnlineOrdersScreen } from "./channels";
 import { KdsScreen, KotTicket } from "./kitchen";
 import { PhoneFrame } from "./devices";
 import { UpiCard } from "./payments";
@@ -35,7 +36,7 @@ function GuestQrScene() {
 }
 
 /** One illustration per screenshot id, drawn with sample data. */
-export const FRAGMENTS: Record<ShotId, () => ReactNode> = {
+export const FRAGMENTS: Partial<Record<ShotId, () => ReactNode>> = {
   dashboard: () => <DashboardScreen />,
   dashboardDark: () => (
     <Dark>
@@ -49,6 +50,8 @@ export const FRAGMENTS: Record<ShotId, () => ReactNode> = {
     </Dark>
   ),
   kds: () => <KdsScreen />,
+  onlineOrders: () => <OnlineOrdersScreen />,
+  emailTemplates: () => <BrandedEmailScene />,
   tables: () => <TablesScreen />,
   reservations: () => <ReservationsScreen />,
   menu: () => <MenuScreen />,

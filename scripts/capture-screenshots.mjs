@@ -12,7 +12,9 @@
  *   and the demo restaurant name in visible text and hides logo images, so
  *   the screenshots show only "Nventra POS". Re-run after the rebrand and the
  *   scrub simply finds nothing to replace.
- * - Output: public/screenshots/<id>.webp at 1440x900 (ids match lib/screenshots.ts).
+ * - Output: public/screenshots/<file>.png at 1440x900, plus guest-qr-phone.png at
+ *   390x844 (filenames match lib/screenshots.ts). email-templates.png has no
+ *   screen to capture until the Settings editor ships; add it by hand.
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
@@ -28,6 +30,7 @@ const EMAIL = process.env.APP_EMAIL ?? "owner@demo.local";
 const PASSWORD = process.env.APP_PASSWORD ?? "Password123!";
 const CHROME = process.env.CHROME_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const VIEWPORT = { width: 1440, height: 900 };
+const PHONE_VIEWPORT = { width: 390, height: 844 };
 const SETTLE_MS = 1800;
 
 /** Runs in every page before its own scripts. Keeps re-applying on re-render. */
@@ -106,8 +109,8 @@ async function setTheme(page, theme) {
 
 async function save(page, id) {
   const png = await page.screenshot({ type: "png", fullPage: false });
-  const file = path.join(OUT_DIR, `${id}.webp`);
-  await writeFile(file, await sharp(png).webp({ quality: 82, effort: 6 }).toBuffer());
+  const file = path.join(OUT_DIR, `${id}.png`);
+  await writeFile(file, await sharp(png).png({ compressionLevel: 9, palette: false }).toBuffer());
   console.log(`  saved ${path.relative(ROOT, file)}`);
 }
 
@@ -146,8 +149,9 @@ async function buildCart(page) {
 
 const SHOTS = [
   { id: "dashboard", path: "/dashboard", dark: true },
-  { id: "pos-cart", path: "/pos", dark: true, prepare: buildCart },
+  { id: "pos", path: "/pos", dark: true, prepare: buildCart },
   { id: "kds", path: "/kds" },
+  { id: "online-orders", path: "/orders" },
   { id: "tables", path: "/tables" },
   { id: "reservations", path: "/reservations" },
   { id: "menu", path: "/menu" },
@@ -191,7 +195,7 @@ async function main() {
           await shot.prepare(page);
           await settle(page);
         }
-        await save(page, `${shot.id}-light`);
+        await save(page, shot.id);
         if (shot.dark) {
           await setTheme(page, "dark");
           await save(page, `${shot.id}-dark`);
@@ -205,10 +209,12 @@ async function main() {
 
     if (qrToken) {
       console.log("> guest QR page");
+      await page.setViewportSize(PHONE_VIEWPORT);
       await page.goto(`${APP_URL}/order/${qrToken}`);
       await setTheme(page, "light");
       await settle(page);
-      await save(page, "guest-qr-light");
+      await save(page, "guest-qr-phone");
+      await page.setViewportSize(VIEWPORT);
     } else {
       failed.push("/order/<qrToken> (no table has a QR token)");
     }

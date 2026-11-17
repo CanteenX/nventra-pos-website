@@ -36,7 +36,7 @@ export const FAQ: FaqItem[] = [
   },
   {
     q: "Can I use it for more than one outlet?",
-    a: "Yes. Branches have their own address, tax regime and UPI payee. You get a branch switcher, a cross-branch overview and branch-to-branch stock transfers. Run one server per site, or a single server on a VPS for all branches.",
+    a: "Yes. Branches have their own address, tax regime and UPI payee. You get a branch switcher, a cross-branch overview and branch-to-branch stock transfers. Run a single server on a VPS for all branches, or one server per site with multi-branch sync: each branch keeps working offline and exchanges menu, customer and stock changes with head office when the link is back.",
   },
   {
     q: "Is it open source?",

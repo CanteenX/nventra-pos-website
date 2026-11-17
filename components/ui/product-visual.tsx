@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import Image from "next/image";
+import { ImageIcon } from "lucide-react";
 import { FRAGMENTS } from "@/components/fragments/registry";
 import { ScaledCanvas } from "@/components/ui/scaled-canvas";
 import { cn } from "@/lib/cn";
@@ -13,6 +14,28 @@ export function hasCapture(id: ShotId): boolean {
   } catch {
     return false;
   }
+}
+
+/** Neutral 16:10 stand-in for a screen with neither a capture nor an illustration yet. */
+function ShotPlaceholder({ caption, className }: { caption: string; className?: string }) {
+  return (
+    <div
+      role="img"
+      aria-label={`${caption}: screenshot coming soon`}
+      className={cn(
+        "relative flex aspect-[16/10] w-full flex-col items-center justify-center gap-2 overflow-hidden bg-bg-subtle text-center",
+        className,
+      )}
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-60 [background-image:linear-gradient(var(--line)_1px,transparent_1px),linear-gradient(90deg,var(--line)_1px,transparent_1px)] [background-size:28px_28px]"
+      />
+      <ImageIcon className="relative size-6 text-fg-muted" aria-hidden />
+      <span className="relative text-sm font-semibold">{caption}</span>
+      <span className="relative text-xs text-fg-muted">Screenshot coming soon</span>
+    </div>
+  );
 }
 
 interface ProductVisualProps {
@@ -42,6 +65,9 @@ export function ProductVisual({ id, priority = false, sizes = "(min-width: 1024p
     );
   }
   const Fragment = FRAGMENTS[id];
+  if (!Fragment) {
+    return <ShotPlaceholder caption={shot.caption} className={className} />;
+  }
   return (
     <ScaledCanvas label={`${shot.alt}. Illustration with sample data.`} className={className}>
       <Fragment />
