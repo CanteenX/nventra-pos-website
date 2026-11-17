@@ -52,25 +52,30 @@ illustration for the real image and drops the "Sample data" badge.
 | `dashboard.png`, `dashboard-dark.png` | 1440×900 | Dashboard |
 | `kds.png` | 1440×900 | Kitchen display |
 | `online-orders.png` | 1440×900 | Online orders queue (delivery platforms, website, QR) |
-| `email-templates.png` | 1440×900 | Branded email and its branding settings (capture by hand) |
+| `email-templates.png` | 1440×900 | Email template editor with rendered preview |
 | `inventory.png` | 1440×900 | Inventory |
 | `reports.png` | 1440×900 | Reports |
 | `tables.png`, `reservations.png`, `menu.png`, `customers.png`, `settings.png` | 1440×900 | As named |
 | `guest-qr-phone.png` | 390×844 | Guest QR ordering page, shown in a phone frame |
 
-Capture at device scale factor 1 (or 2 for retina, keeping the same aspect ratio).
+Capture at device scale factor 1. Use only the local demo stack, updated after the release-blocking PRs merge.
+
+Set `APP_PASSWORD` privately in the environment, or point `APP_STORAGE_STATE` at an existing owner session file outside version control (for example under ignored `scripts/.auth/`). Never paste credentials into commands or commit session files. An expired session causes capture to fail.
 
 ```bash
-# product running at http://localhost:1995 with demo data (./install.sh --demo)
+# Run from Git Bash with Node 26 first on PATH. Preserve the existing demo data.
+# Set APP_PASSWORD privately, or APP_STORAGE_STATE to the private session path.
+until mkdir /tmp/nventra-heavy.lock 2>/dev/null; do sleep 20; done
+trap 'rmdir /tmp/nventra-heavy.lock' EXIT
 pnpm capture
-# options: APP_URL, APP_EMAIL, APP_PASSWORD, CHROME_PATH
+# Other options: APP_URL (default http://localhost:1995), APP_EMAIL, CHROME_PATH
+# Fast capture-plan regression checks, without a browser:
+pnpm test:capture
 ```
 
-The script logs in once (login is rate-limited), visits each screen, builds an **unsent** POS cart (no order
-is sent and no payment is taken), and captures 1440×900 light shots plus dark versions of the dashboard and
-POS, and the guest page at 390×844. Until the product rebrand ships, it rewrites upstream product names and the demo restaurant name in the
-page text and hides the logo image before each capture. Re-run it after the rebrand to refresh every image.
-Image ids are listed in `lib/screenshots.ts` (alt text lives there too).
+The script logs in once, captures all 15 files, and rejects redirects, failed API calls, visible error pages and unfinished content. It leaves the app's branding and logos intact. The POS images use an **unsent** local cart; no order, payment or email is submitted. The guest capture uses a separate logged-out context, reuses an existing table QR token and passes the name prompt to show the menu. If the demo tables have no token, prepare one separately before capture; this script never rotates QR tokens. Email previews are rendered without saving or sending.
+
+Inspect every generated PNG before committing it. A failed capture exits nonzero; existing files for failed shots are preserved, so do not treat a partial run as a complete refresh. Image ids and alt text live in `lib/screenshots.ts`. Browser capture and visual inspection remain required before release; unit checks alone do not verify screenshots.
 
 ## Project layout
 
