@@ -59,7 +59,7 @@ export const SHOTS = {
   ),
   onlineOrders: shot(
     "online-orders.png",
-    "Online orders queue with delivery-platform and website orders waiting to be accepted or declined",
+    "Orders screen with three new online orders, takeaway and delivery, waiting to be accepted",
     "Online orders from every channel in one queue",
   ),
   emailTemplates: shot(
@@ -79,12 +79,12 @@ export const SHOTS = {
   ),
   menu: shot(
     "menu.png",
-    "Menu management screen with categories, dishes, prices and availability toggles",
+    "Menu management screen with categories, dishes, kitchen stations, prices and tax rates",
     "Menu management",
   ),
   customers: shot(
     "customers.png",
-    "Customer list with contact details, visit counts and loyalty points",
+    "Customer list with names, phone numbers, emails and loyalty points",
     "Customers and loyalty",
   ),
   inventory: shot(
@@ -94,12 +94,12 @@ export const SHOTS = {
   ),
   reports: shot(
     "reports.png",
-    "Reports screen with a chosen report, date range, chart and export buttons",
+    "Reports screen showing the daily sales report with a date range, print, Excel, PDF and CSV export, and scheduled emailing",
     "Reports and exports",
   ),
   settings: shot(
     "settings.png",
-    "Settings screen with restaurant details, branch, tax regime and UPI payee fields",
+    "Settings screen with restaurant name, currency, timezone, loyalty program, branch details and GST tax settings",
     "Settings",
   ),
   guestQr: shot(

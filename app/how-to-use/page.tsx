@@ -9,7 +9,7 @@ export const metadata = pageMetadata({
   description:
     "Six steps from sign-up to your first UPI-paid order in Nventra POS: create the restaurant, set tax, UPI and staff, add the menu and floor, take an order, run the kitchen and payment, then stock, reports and backups.",
   path: "/how-to-use/",
-  image: "/screenshots/pos-cart-light.webp",
+  image: "/screenshots/pos.png",
 });
 
 export default function HowToUsePage() {
@@ -18,7 +18,7 @@ export default function HowToUsePage() {
       <PageHero
         eyebrow="How to use"
         title="From sign-up to your first paid order."
-        lead="Six steps, about ten minutes once the app is installed. The pictures are illustrations of each screen drawn with sample data; real screenshots will replace them once they are captured."
+        lead="Six steps, about ten minutes once the app is installed. The pictures are real screenshots of each screen, taken with a sample restaurant's data."
       >
         <nav aria-label="Steps">
           <ol className="flex flex-wrap gap-2">
