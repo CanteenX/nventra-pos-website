@@ -52,7 +52,7 @@ illustration for the real image and drops the "Sample data" badge.
 | `dashboard.png`, `dashboard-dark.png` | 1440×900 | Dashboard |
 | `kds.png` | 1440×900 | Kitchen display |
 | `online-orders.png` | 1440×900 | Online orders queue (delivery platforms, website, QR) |
-| `email-templates.png` | 1440×900 | Email template editor with rendered preview |
+| `email-templates.png` | 1440×900 | Settings email preview: heading, subject and upper branded email |
 | `inventory.png` | 1440×900 | Inventory |
 | `reports.png` | 1440×900 | Reports |
 | `tables.png`, `reservations.png`, `menu.png`, `customers.png`, `settings.png` | 1440×900 | As named |
@@ -73,7 +73,7 @@ pnpm capture
 pnpm test:capture
 ```
 
-The script logs in once, captures all 15 files, and rejects redirects, failed API calls, visible error pages and unfinished content. It leaves the app's branding and logos intact. The POS images use an **unsent** local cart; no order, payment or email is submitted. The guest capture uses a separate logged-out context, reuses an existing table QR token and passes the name prompt to show the menu. If the demo tables have no token, prepare one separately before capture; this script never rotates QR tokens. Email previews are rendered without saving or sending.
+The script logs in once, captures all 15 files, and rejects redirects, failed API calls, visible error pages and unfinished content. It leaves the app's branding and logos intact. The POS images use an **unsent** local cart; no order, payment or email is submitted. The guest capture uses a separate logged-out context, reuses an existing table QR token and passes the name prompt to show the menu. If the demo tables have no token, prepare one separately before capture; this script never rotates QR tokens. Email previews are rendered without saving or sending. At 1440 px the app stacks the editor and preview, so this capture focuses on the Settings preview heading, subject and at least 200 px of the upper rendered email. It uses natural page scrolling without changing app layout or zoom.
 
 Inspect every generated PNG before committing it. A failed capture exits nonzero; existing files for failed shots are preserved, so do not treat a partial run as a complete refresh. Image ids and alt text live in `lib/screenshots.ts`. Browser capture and visual inspection remain required before release; unit checks alone do not verify screenshots.
 

@@ -64,8 +64,8 @@ export const SHOTS = {
   ),
   emailTemplates: shot(
     "email-templates.png",
-    "A branded scheduled-report email in the restaurant's colour, next to the email branding settings",
-    "Branded email template",
+    "Settings email preview showing the scheduled-report subject and upper portion of the branded email",
+    "Settings email preview",
   ),
   tables: shot(
     "tables.png",

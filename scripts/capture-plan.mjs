@@ -34,11 +34,12 @@ export function capturePlan(qrToken) {
   ];
 }
 
-export function assertCapturePage(expectedPath, { actualURL, status, hasError, hasContent }) {
+export function assertCapturePage(expectedPath, { actualURL, status, hasError, hasContent, emailComposition }) {
   if (new URL(actualURL).pathname.replace(/\/$/, '') !== expectedPath.replace(/\/$/, '')) throw new Error('Unexpected route or expired session.');
   if (!status || status >= 400) throw new Error('HTTP failure loading screenshot page.');
   if (hasError) throw new Error('Page contains a visible error.');
   if (!hasContent) throw new Error('Page content is incomplete.');
+  if (emailComposition) assertEmailComposition(emailComposition);
 }
 
 export function findQrToken(floors) {
@@ -60,4 +61,18 @@ export async function prepareGuest(page) {
 export function captureRequestAllowed(method, pathname) {
   if (['GET', 'HEAD', 'OPTIONS'].includes(method)) return true;
   return method === 'POST' && /^\/api\/v1\/email-templates\/[A-Z_]+\/preview$/.test(pathname);
+}
+
+/** Require a preview-focused crop, including its title, subject and upper email. */
+function assertEmailComposition({ clip, title, subject, frame }) {
+  const valid = rect => rect && ['x', 'y', 'width', 'height'].every(key => Number.isFinite(rect[key])) && rect.width > 0 && rect.height > 0;
+  if (![clip, title, subject, frame].every(valid)) throw new Error('Invalid email preview composition.');
+  const right = rect => rect.x + rect.width;
+  const bottom = rect => rect.y + rect.height;
+  const inside = rect => rect.x >= clip.x && rect.y >= clip.y && right(rect) <= right(clip) && bottom(rect) <= bottom(clip);
+  const upperPreviewHeight = Math.min(bottom(frame), bottom(clip)) - frame.y;
+  if (!inside(title) || !inside(subject) || title.y > clip.y + 120 ||
+      frame.x < clip.x || right(frame) > right(clip) || frame.y < bottom(subject) || upperPreviewHeight < 200) {
+    throw new Error('Invalid email preview composition: show heading, subject and at least 200px of the upper email.');
+  }
 }

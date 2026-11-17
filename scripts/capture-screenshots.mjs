@@ -99,7 +99,38 @@ async function prepareEmail(page) {
     const frame = document.querySelector('[data-testid="email-preview-frame"]');
     return (frame?.contentDocument?.body?.innerText.trim().length ?? 0) > 0;
   });
-  await frame.scrollIntoViewIfNeeded();
+  // At 1440px the app stacks editor and preview. Scroll the preview heading
+  // to the top without changing CSS, DOM layout, viewport size or zoom.
+  await page.locator('#email-preview-title').evaluate(element => {
+    element.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' });
+  });
+}
+
+async function emailComposition(page) {
+  return page.evaluate(() => {
+    const heading = document.querySelector('#email-preview-title');
+    const subject = document.querySelector('[data-testid="email-preview-subject"]');
+    const frame = document.querySelector('[data-testid="email-preview-frame"]');
+    if (!heading || !subject || !frame) throw new Error('Email preview content missing.');
+    const rect = element => {
+      const { x, y, width, height } = element.getBoundingClientRect();
+      return { x, y, width, height };
+    };
+    // Intersect the viewport with scroll containers shared by the preview,
+    // so content clipped by the app's main panel cannot count as visible.
+    let left = 0, top = 0, right = window.innerWidth, bottom = window.innerHeight;
+    for (let element = heading.closest('section')?.parentElement; element; element = element.parentElement) {
+      const style = getComputedStyle(element);
+      const bounds = element.getBoundingClientRect();
+      if (/(auto|scroll|hidden|clip)/.test(style.overflowX)) {
+        left = Math.max(left, bounds.left); right = Math.min(right, bounds.right);
+      }
+      if (/(auto|scroll|hidden|clip)/.test(style.overflowY)) {
+        top = Math.max(top, bounds.top); bottom = Math.min(bottom, bounds.bottom);
+      }
+    }
+    return { clip: { x: left, y: top, width: right - left, height: bottom - top }, title: rect(heading), subject: rect(subject), frame: rect(frame) };
+  });
 }
 
 async function qrToken(context) {
@@ -139,7 +170,10 @@ async function capture(context, shot) {
     const content = shot.id === 'guest-qr-phone' ? page.locator('body') : page.locator('main');
     const hasError = await page.locator('[role="alert"]:visible, nextjs-portal').count() > 0;
     const hasContent = (await content.innerText()).trim().length > 30;
-    assertCapturePage(shot.path, { actualURL: page.url(), status: response?.status(), hasError, hasContent });
+    assertCapturePage(shot.path, {
+      actualURL: page.url(), status: response?.status(), hasError, hasContent,
+      ...(shot.id === 'email-templates' ? { emailComposition: await emailComposition(page) } : {}),
+    });
     const png = await page.screenshot({ type: 'png', fullPage: false, animations: 'disabled' });
     const file = path.join(OUT_DIR, `${shot.id}.png`);
     await writeFile(file, await sharp(png).png({ compressionLevel: 9 }).toBuffer());

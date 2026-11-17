@@ -67,3 +67,23 @@ test('capture blocks persisted writes, including order, payment and real email r
   }
   assert.equal(captureRequestAllowed('PATCH', '/api/v1/email-templates/REPORT_SCHEDULED'), false);
 });
+
+test('email capture refuses an offscreen title, subject, or insufficient upper preview at 1440px', () => {
+  const composition = {
+    clip: { x: 256, y: 80, width: 1184, height: 820 },
+    title: { x: 600, y: 90, width: 120, height: 24 },
+    subject: { x: 600, y: 140, width: 550, height: 24 },
+    frame: { x: 600, y: 180, width: 600, height: 1300 },
+  };
+  const ready = { actualURL: 'http://localhost:1995/settings/email-templates', status: 200, hasError: false, hasContent: true, emailComposition: composition };
+  assert.doesNotThrow(() => assertCapturePage('/settings/email-templates', ready));
+  for (const emailComposition of [
+    { ...composition, title: { ...composition.title, y: -200 } },
+    { ...composition, subject: { ...composition.subject, y: -30 } },
+    { ...composition, frame: { ...composition.frame, y: 750 } },
+    { ...composition, frame: { ...composition.frame, y: -500 } },
+    { ...composition, frame: { ...composition.frame, x: 1200 } },
+  ]) {
+    assert.throws(() => assertCapturePage('/settings/email-templates', { ...ready, emailComposition }), /preview composition/);
+  }
+});
