@@ -8,7 +8,8 @@
     "start": "npx serve out -p 4100",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "capture": "node scripts/capture-screenshots.mjs"
+    "capture": "node scripts/capture-screenshots.mjs",
+    "test:capture": "node --test scripts/capture-plan.test.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -199,7 +199,7 @@ export default function HomePage() {
           id="gallery-title"
           eyebrow="Screens"
           title="See it before you install it."
-          lead="Illustrations of the main screens, drawn with sample data. Real screenshots will replace them once they are captured."
+          lead="Real screenshots of the main screens, taken from the app running with a sample restaurant's data."
         />
         <Gallery />
       </Section>

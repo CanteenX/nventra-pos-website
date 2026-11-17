@@ -237,8 +237,9 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
       "MCP server so AI clients can work with your data",
       "Customer-facing second screen and USB cash drawer",
       "SMTP email for receipts, reports and alerts",
+      "Email template editor with live preview in Settings",
       "Branded HTML emails with your logo, colour and wording; preview and send yourself a test",
     ],
-    soon: ["Weighing-scale and label printers", "Email template editor with live preview in Settings"],
+    soon: ["Weighing-scale and label printers"],
   },
 ];
