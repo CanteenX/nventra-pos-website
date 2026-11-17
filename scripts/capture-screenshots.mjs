@@ -57,12 +57,10 @@ async function settle(page, state) {
 }
 
 async function setTheme(page, theme) {
-  await page.evaluate(value => {
-    localStorage.setItem('theme', value);
-    document.documentElement.classList.toggle('dark', value === 'dark');
-    document.documentElement.classList.toggle('light', value === 'light');
-    document.documentElement.style.colorScheme = value;
-  }, theme);
+  // The app's next-themes provider reads the stored theme only on load and
+  // re-applies its own <html> class, so toggling classes in place gets undone.
+  // capture() stores the choice in an init script BEFORE navigation (no reload,
+  // so no aborted requests); here we only wait for the provider to apply it.
   await page.waitForFunction(value => document.documentElement.classList.contains(value), theme);
 }
 
@@ -154,6 +152,7 @@ async function capture(context, shot) {
   const state = monitor(page);
   try {
     await page.setViewportSize(shot.viewport);
+    await page.addInitScript(value => localStorage.setItem('theme', value), shot.theme);
     const response = await page.goto(`${config.appURL}${shot.path}`);
     // Fail redirects before waiting for content which may exist on the login page.
     assertCapturePage(shot.path, { actualURL: page.url(), status: response?.status(), hasError: false, hasContent: true });
@@ -168,12 +167,25 @@ async function capture(context, shot) {
     if (shot.id === 'email-templates') await prepareEmail(page);
     await settle(page, state);
     const content = shot.id === 'guest-qr-phone' ? page.locator('body') : page.locator('main');
-    const hasError = await page.locator('[role="alert"]:visible, nextjs-portal').count() > 0;
+    // Next.js renders an always-present, empty route announcer with role="alert";
+    // only alerts that actually say something count as a visible error.
+    const alertTexts = await page.locator('[role="alert"]:visible:not(#__next-route-announcer__)').allInnerTexts();
+    const hasError = alertTexts.some(text => text.trim().length > 0) || await page.locator('nextjs-portal').count() > 0;
     const hasContent = (await content.innerText()).trim().length > 30;
     assertCapturePage(shot.path, {
       actualURL: page.url(), status: response?.status(), hasError, hasContent,
       ...(shot.id === 'email-templates' ? { emailComposition: await emailComposition(page) } : {}),
     });
+    // Adding cart lines scrolls the POS layout; frame every page from its top
+    // (the email shot deliberately scrolls to its preview heading instead).
+    if (shot.id !== 'email-templates') {
+      await page.evaluate(() => {
+        window.scrollTo(0, 0);
+        document.querySelectorAll('main, main *').forEach(element => {
+          if (element.scrollTop) element.scrollTop = 0;
+        });
+      });
+    }
     const png = await page.screenshot({ type: 'png', fullPage: false, animations: 'disabled' });
     const file = path.join(OUT_DIR, `${shot.id}.png`);
     await writeFile(file, await sharp(png).png({ compressionLevel: 9 }).toBuffer());
