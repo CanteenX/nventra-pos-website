@@ -6,8 +6,8 @@ import { cn } from "@/lib/cn";
 const KEY = "nventra-theme";
 
 function currentTheme(): "light" | "dark" {
-  // Light is the default; dark only when the visitor chose it.
-  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  // Dark is the default; light only when the visitor chose it.
+  return document.documentElement.dataset.theme === "light" ? "light" : "dark";
 }
 
 interface ThemeToggleProps {

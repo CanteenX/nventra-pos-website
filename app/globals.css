@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 /*
- * Design tokens shared with the Nventra portfolio (Inter, mint brand accent,
- * warm orange primary, mono "eyebrow" tags, hairline borders, 0.75rem radius).
- * The portfolio is dark-only; this product site adds a light theme and follows
- * the OS setting unless the visitor picks one (see components/theme-script.tsx).
+ * Design tokens. Black/charcoal base with a warm orange accent (owner brief,
+ * Nov 2026). Dark is the default; the toggle switches to a warm-light
+ * variant (cream surfaces, black text, deep-orange text accents).
+ * Every colour lives here: components use the token utilities only.
+ * Contrast (WCAG 2.x) is listed next to each text/fill pair.
  */
 
-/* `dark:` matches an explicit dark choice, or anything inside a .scheme-dark band. */
+/* `dark:` matches the dark theme, or anything inside a .scheme-dark band. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .scheme-dark, .scheme-dark *));
 
 @theme inline {
@@ -22,9 +23,11 @@
   --color-card-hover: var(--card-hover);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
-  --color-mint: var(--mint);
-  --color-mint-fg: var(--mint-fg);
-  --color-mint-text: var(--mint-text);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-pressed: var(--brand-pressed);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-text: var(--brand-text);
   --color-primary: var(--primary);
   --color-primary-fg: var(--primary-fg);
   --color-ring: var(--ring);
@@ -37,54 +40,64 @@
   --radius-3xl: 2rem;
 }
 
+/* Warm light: the toggle's light theme and light islands (.scheme-light). */
 :root,
+:root[data-theme="light"],
 .scheme-light {
   color-scheme: light;
-  --bg: oklch(0.99 0 0);
-  --bg-subtle: oklch(0.965 0.004 158);
-  --fg: oklch(0.17 0 0);
-  --fg-muted: oklch(0.45 0 0);
-  --card: oklch(1 0 0);
-  --card-hover: oklch(0.975 0.006 158);
-  --line: oklch(0.9 0 0);
-  --line-strong: oklch(0.8 0 0);
-  --mint: oklch(0.88 0.22 158);
-  --mint-fg: oklch(0.13 0 0);
-  /* mint is too light for text on white: a deeper green keeps AA contrast */
-  --mint-text: oklch(0.5 0.14 158);
-  --primary: oklch(0.6716 0.1368 48.513);
-  --primary-fg: oklch(1 0 0);
-  --ring: oklch(0.5 0.14 158);
-  --header-bg: oklch(1 0 0 / 0.75);
-  /* table / ticket states in the UI illustrations */
-  --ok: oklch(0.56 0.14 158);
-  --busy: oklch(0.62 0.16 45);
-  --held: oklch(0.66 0.15 80);
+  --bg: #fbf8f3;
+  --bg-subtle: #f3eee6;
+  --fg: #141416; /* 17.4:1 on bg */
+  --fg-muted: #5c554c; /* 6.9:1 on bg, 6.4:1 on bg-subtle */
+  --card: #ffffff;
+  --card-hover: #f8f3ec;
+  --line: #e5ded3;
+  --line-strong: #cdc4b6;
+  --brand: #f97316; /* CTA fill; text on it is --brand-fg (6.5:1) */
+  --brand-hover: #fb8a3c;
+  --brand-pressed: #ea580c; /* 5.2:1 with --brand-fg */
+  --brand-fg: #141416;
+  --brand-text: #b43b0a; /* orange text: 5.6:1 on bg, 5.1:1 on bg-subtle, 5.9:1 on card */
+  --primary: #b43b0a;
+  --primary-fg: #ffffff; /* 5.9:1 */
+  --ring: #b43b0a;
+  --header-bg: rgb(251 248 243 / 0.8);
+  /* table / ticket states in the UI illustrations (muted, not neon) */
+  --ok: #4d6b57;
+  --busy: #b43b0a;
+  --held: #a16207;
 }
 
-/*
- * Light is the default. Dark applies when the visitor picks it (data-theme on
- * <html>) and inside .scheme-dark bands (dark hero, inset containers).
- */
+/* Black / charcoal: the default theme and dark bands (.scheme-dark). */
 :root[data-theme="dark"],
 .scheme-dark {
   color-scheme: dark;
-  --bg: oklch(0.13 0 0);
-  --bg-subtle: oklch(0.16 0.004 158);
-  --fg: oklch(0.95 0 0);
-  --fg-muted: oklch(0.72 0 0);
-  --card: oklch(0.18 0.003 158);
-  --card-hover: oklch(0.21 0.006 158);
-  --line: oklch(0.27 0 0);
-  --line-strong: oklch(0.36 0 0);
-  --mint-text: oklch(0.88 0.22 158);
-  --primary: oklch(0.7214 0.1337 49.98);
-  --primary-fg: oklch(0.15 0 0);
-  --ring: oklch(0.88 0.22 158);
-  --header-bg: oklch(0.2 0 0 / 0.7);
-  --ok: oklch(0.8 0.17 158);
-  --busy: oklch(0.76 0.14 50);
-  --held: oklch(0.84 0.14 85);
+  --bg: #111113;
+  --bg-subtle: #161618;
+  --fg: #f5f0e8; /* 16.6:1 on bg */
+  --fg-muted: #aba399; /* 7.6:1 on bg, 6.9:1 on card */
+  --card: #1b1b1e;
+  --card-hover: #232327;
+  --line: #2b2b30;
+  --line-strong: #3d3d43;
+  --brand: #f97316; /* text on it is --brand-fg (6.7:1) */
+  --brand-hover: #fb8a3c;
+  --brand-pressed: #ea580c; /* 5.3:1 with --brand-fg */
+  --brand-fg: #111113;
+  --brand-text: #fb923c; /* orange text: 8.3:1 on bg, 7.6:1 on card */
+  --primary: #fb923c;
+  --primary-fg: #111113;
+  --ring: #fb923c;
+  --header-bg: rgb(17 17 19 / 0.78);
+  --ok: #9cb8a3;
+  --busy: #fb923c;
+  --held: #e8b04b;
+}
+
+/* Dark bands inside the dark page sit a step deeper so they still read as bands. */
+:root[data-theme="dark"] .scheme-dark {
+  --bg: #0b0b0c;
+  --bg-subtle: #121214;
 }
 
 .scheme-dark {
@@ -122,7 +135,7 @@
   }
 
   ::selection {
-    background: color-mix(in oklch, var(--mint) 40%, transparent);
+    background: color-mix(in oklch, var(--brand) 35%, transparent);
   }
 
   :focus-visible {
@@ -161,7 +174,7 @@
 @layer utilities {
   .text-mono-tag {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
@@ -179,10 +192,10 @@
     }
   }
 
-  .glow-mint {
+  .glow-brand {
     background: radial-gradient(
       closest-side,
-      color-mix(in oklch, var(--mint) 22%, transparent),
+      color-mix(in oklch, var(--brand) 16%, transparent),
       transparent
     );
   }

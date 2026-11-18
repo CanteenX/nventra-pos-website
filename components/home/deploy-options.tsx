@@ -19,7 +19,7 @@ export function DeployOptions() {
           key={opt.title}
           className={cn(
             "flex flex-col rounded-3xl border bg-card p-4 sm:p-5",
-            i === 0 ? "border-mint-text/50 ring-1 ring-mint-text/25 lg:col-span-2 lg:row-span-2" : "border-line",
+            i === 0 ? "border-brand-text/50 ring-1 ring-brand-text/25 lg:col-span-2 lg:row-span-2" : "border-line",
           )}
         >
           <div className={i === 0 ? "lg:flex-1" : undefined}>{ART[i]}</div>
@@ -29,7 +29,7 @@ export function DeployOptions() {
                 {opt.title}
               </h3>
               {opt.badge ? (
-                <span className="rounded-full bg-mint px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-mint-fg">
+                <span className="rounded-full bg-brand px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-fg">
                   {opt.badge}
                 </span>
               ) : null}
@@ -38,7 +38,7 @@ export function DeployOptions() {
             <ul className="mt-4 space-y-1.5 text-sm">
               {opt.points.map((p) => (
                 <li key={p} className="flex gap-2">
-                  <Check className="mt-0.5 size-4 shrink-0 text-mint-text" aria-hidden />
+                  <Check className="mt-0.5 size-4 shrink-0 text-brand-text" aria-hidden />
                   {p}
                 </li>
               ))}

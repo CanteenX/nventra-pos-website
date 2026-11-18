@@ -24,8 +24,8 @@ function Node({ x, y, w, title, sub, accent }: NodeProps) {
         width={w}
         height={76}
         rx={BOX.rx}
-        fill={accent ? "var(--mint)" : "var(--card)"}
-        stroke={accent ? "var(--mint)" : "var(--line-strong)"}
+        fill={accent ? "var(--brand)" : "var(--card)"}
+        stroke={accent ? "var(--brand)" : "var(--line-strong)"}
         strokeWidth={BOX.strokeWidth}
       />
       <text
@@ -34,7 +34,7 @@ function Node({ x, y, w, title, sub, accent }: NodeProps) {
         textAnchor="middle"
         fontSize="16"
         fontWeight="600"
-        fill={accent ? "var(--mint-fg)" : "var(--fg)"}
+        fill={accent ? "var(--brand-fg)" : "var(--fg)"}
       >
         {title}
       </text>
@@ -43,7 +43,7 @@ function Node({ x, y, w, title, sub, accent }: NodeProps) {
         y={y + 55}
         textAnchor="middle"
         fontSize="12.5"
-        fill={accent ? "var(--mint-fg)" : "var(--fg-muted)"}
+        fill={accent ? "var(--brand-fg)" : "var(--fg-muted)"}
         fontFamily="var(--font-mono)"
       >
         {sub}

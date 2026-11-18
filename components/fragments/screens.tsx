@@ -231,7 +231,7 @@ export function GuestQrScreen() {
   ];
   return (
     <div className="flex h-full flex-col bg-bg text-fg">
-      <div className="bg-mint px-[1.1em] pb-[1em] pt-[1.6em] text-mint-fg">
+      <div className="bg-brand px-[1.1em] pb-[1em] pt-[1.6em] text-brand-fg">
         <span className="block text-[0.8em] font-medium opacity-70">Table T7 · Ordering</span>
         <span className="block text-[1.35em] font-semibold tracking-tight">{RESTAURANT.name}</span>
       </div>
@@ -257,11 +257,11 @@ export function GuestQrScreen() {
               <span className="block text-[0.85em] text-fg-muted tabular-nums">{rupees(it.price)}</span>
             </span>
             {it.qty ? (
-              <span className="rounded-[0.5em] bg-mint px-[0.6em] py-[0.2em] text-[0.85em] font-semibold text-mint-fg">
+              <span className="rounded-[0.5em] bg-brand px-[0.6em] py-[0.2em] text-[0.85em] font-semibold text-brand-fg">
                 − {it.qty} +
               </span>
             ) : (
-              <span className="rounded-[0.5em] border border-mint-text px-[0.7em] py-[0.2em] text-[0.85em] font-semibold text-mint-text">
+              <span className="rounded-[0.5em] border border-brand-text px-[0.7em] py-[0.2em] text-[0.85em] font-semibold text-brand-text">
                 Add
               </span>
             )}

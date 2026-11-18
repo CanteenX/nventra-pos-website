@@ -18,11 +18,11 @@ export function Section({ id, className, children, tone = "default", labelledBy 
       <section id={id} aria-labelledby={labelledBy} className="px-2 py-4 sm:px-4 sm:py-6">
         <div
           className={cn(
-            "scheme-dark relative mx-auto max-w-[96rem] overflow-hidden rounded-[1.75rem] py-20 sm:rounded-[2rem] sm:py-28",
+            "scheme-dark relative mx-auto max-w-[96rem] overflow-hidden rounded-[1.75rem] ring-1 ring-inset ring-line py-20 sm:rounded-[2rem] sm:py-28",
             className,
           )}
         >
-          <div className="glow-mint pointer-events-none absolute -top-48 right-[-10%] h-[480px] w-[720px]" aria-hidden />
+          <div className="glow-brand pointer-events-none absolute -top-48 right-[-10%] h-[480px] w-[720px]" aria-hidden />
           <div className="container-x relative">{children}</div>
         </div>
       </section>
@@ -54,7 +54,7 @@ export function SectionHeading({ id, eyebrow, title, lead, align = "left", as = 
   const Tag = as;
   return (
     <div className={cn("mb-12 max-w-3xl sm:mb-16", align === "center" && "mx-auto text-center", className)}>
-      <p className="text-mono-tag mb-3 font-semibold text-mint-text">
+      <p className="text-mono-tag mb-3 font-semibold text-brand-text">
         {eyebrow} {"//"}
       </p>
       <Tag

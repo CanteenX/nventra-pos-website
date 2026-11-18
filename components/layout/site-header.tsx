@@ -59,7 +59,7 @@ function DesktopNav() {
               {menu.footer ? (
                 <div className="border-t border-line px-6 py-3">
                   <NM.Link asChild>
-                    <Link href={menu.footer.href} className="text-sm font-semibold text-mint-text hover:underline">
+                    <Link href={menu.footer.href} className="text-sm font-semibold text-brand-text hover:underline">
                       {menu.footer.label} →
                     </Link>
                   </NM.Link>
@@ -103,7 +103,7 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
                 <Link
                   href={link.href}
                   onClick={onClose}
-                  className="block rounded-lg px-2 py-2.5 text-[15px] font-medium hover:bg-card-hover"
+                  className="flex min-h-11 items-center rounded-lg px-2 text-[15px] font-medium hover:bg-card-hover"
                 >
                   {link.label}
                 </Link>
@@ -113,7 +113,7 @@ function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
         </div>
       ))}
       <div className="flex flex-col gap-3 pt-5">
-        <Link href="/contact/" onClick={onClose} className="px-2 py-2 text-[15px] font-medium">
+        <Link href="/contact/" onClick={onClose} className="flex min-h-11 items-center px-2 text-[15px] font-medium">
           Contact
         </Link>
         <ButtonLink href="/install/">Get started free</ButtonLink>
@@ -140,7 +140,7 @@ export function SiteHeader() {
       style={{ backgroundColor: "var(--header-bg)" }}
     >
       <div className="container-x relative flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label="Nventra POS home" className="rounded-lg">
+        <Link href="/" aria-label="Nventra POS home" className="inline-flex min-h-10 items-center rounded-lg">
           <Logo />
         </Link>
         <DesktopNav />

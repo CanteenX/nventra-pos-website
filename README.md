@@ -42,19 +42,40 @@ static host.
 
 Until real screenshots are captured, every product image is an HTML/CSS illustration of the screen with
 clearly labelled sample data (`components/fragments/`, data in `lib/sample-data.ts`). Real captures are made by
-`scripts/capture-screenshots.mjs` (Playwright + your installed Chrome, output optimised to WebP with sharp).
+`scripts/capture-screenshots.mjs` (Playwright + your installed Chrome, compressed PNG via sharp), or by
+dropping a PNG with the exact name below into `public/screenshots/`. The next build picks it up, swaps the
+illustration for the real image and drops the "Sample data" badge.
+
+| File | Viewport | Screen |
+|---|---|---|
+| `pos.png`, `pos-dark.png` | 1440×900 | Point of Sale with an open, unsent cart |
+| `dashboard.png`, `dashboard-dark.png` | 1440×900 | Dashboard |
+| `kds.png` | 1440×900 | Kitchen display |
+| `online-orders.png` | 1440×900 | Online orders queue (delivery platforms, website, QR) |
+| `email-templates.png` | 1440×900 | Settings email preview: heading, subject and upper branded email |
+| `inventory.png` | 1440×900 | Inventory |
+| `reports.png` | 1440×900 | Reports |
+| `tables.png`, `reservations.png`, `menu.png`, `customers.png`, `settings.png` | 1440×900 | As named |
+| `guest-qr-phone.png` | 390×844 | Guest QR ordering page, shown in a phone frame |
+
+Capture at device scale factor 1. Use only the local demo stack, updated after the release-blocking PRs merge.
+
+Set `APP_PASSWORD` privately in the environment, or point `APP_STORAGE_STATE` at an existing owner session file outside version control (for example under ignored `scripts/.auth/`). Never paste credentials into commands or commit session files. An expired session causes capture to fail.
 
 ```bash
-# product running at http://localhost:1995 with demo data (./install.sh --demo)
+# Run from Git Bash with Node 26 first on PATH. Preserve the existing demo data.
+# Set APP_PASSWORD privately, or APP_STORAGE_STATE to the private session path.
+until mkdir /tmp/nventra-heavy.lock 2>/dev/null; do sleep 20; done
+trap 'rmdir /tmp/nventra-heavy.lock' EXIT
 pnpm capture
-# options: APP_URL, APP_EMAIL, APP_PASSWORD, CHROME_PATH
+# Other options: APP_URL (default http://localhost:1995), APP_EMAIL, CHROME_PATH
+# Fast capture-plan regression checks, without a browser:
+pnpm test:capture
 ```
 
-The script logs in once (login is rate-limited), visits each screen, builds an **unsent** POS cart (no order
-is sent and no payment is taken), and captures 1440×900 light shots plus dark versions of the dashboard and
-POS. Until the product rebrand ships, it rewrites upstream product names and the demo restaurant name in the
-page text and hides the logo image before each capture. Re-run it after the rebrand to refresh every image.
-Image ids are listed in `lib/screenshots.ts` (alt text lives there too).
+The script logs in once, captures all 15 files, and rejects redirects, failed API calls, visible error pages and unfinished content. It leaves the app's branding and logos intact. The POS images use an **unsent** local cart; no order, payment or email is submitted. The guest capture uses a separate logged-out context, reuses an existing table QR token and passes the name prompt to show the menu. If the demo tables have no token, prepare one separately before capture; this script never rotates QR tokens. Email previews are rendered without saving or sending. At 1440 px the app stacks the editor and preview, so this capture focuses on the Settings preview heading, subject and at least 200 px of the upper rendered email. It uses natural page scrolling without changing app layout or zoom.
+
+Inspect every generated PNG before committing it. A failed capture exits nonzero; existing files for failed shots are preserved, so do not treat a partial run as a complete refresh. Image ids and alt text live in `lib/screenshots.ts`. Browser capture and visual inspection remain required before release; unit checks alone do not verify screenshots.
 
 ## Project layout
 
@@ -91,7 +112,7 @@ Kept deliberately small. Everything is MIT/ISC and copied in as owned source or 
 | "Works with" marquee, bento grid, number ticker | Patterns from [Magic UI](https://github.com/magicuidesign/magicui) (Marquee, Bento Grid, Number Ticker), re-implemented in a few lines | MIT | Avoids pulling in a registry for three small effects; reduced-motion handled explicitly |
 | Icons | [lucide-react](https://lucide.dev) | ISC | Same icon family as the product UI |
 | Motion | [framer-motion](https://motion.dev) | MIT | Already used by the portfolio; `useReducedMotion` built in |
-| Screenshot capture | [playwright-core](https://playwright.dev) + [sharp](https://sharp.pixelplumbing.com) | Apache-2.0 / Apache-2.0 | Drives the installed Chrome; WebP output |
+| Screenshot capture | [playwright-core](https://playwright.dev) + [sharp](https://sharp.pixelplumbing.com) | Apache-2.0 / Apache-2.0 | Drives the installed Chrome; PNG output |
 
 No carousel library: the gallery is a CSS scroll-snap strip.
 

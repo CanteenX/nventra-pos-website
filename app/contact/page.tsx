@@ -28,7 +28,7 @@ export default function ContactPage() {
       <section aria-label="Email address" className="container-x py-14 sm:py-20">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-3xl border border-line bg-card p-6 sm:p-10">
-            <span className="inline-flex size-12 items-center justify-center rounded-full bg-mint text-mint-fg">
+            <span className="inline-flex size-12 items-center justify-center rounded-full bg-brand text-brand-fg">
               <Mail className="size-5" aria-hidden />
             </span>
             <p className="mt-6 text-sm text-fg-muted">Email us at</p>
@@ -37,7 +37,7 @@ export default function ContactPage() {
               <CopyButton value={SITE.email} label="Copy email address" className="min-h-11 px-5 text-sm" />
               <a
                 href={`mailto:${SITE.email}`}
-                className="inline-flex min-h-11 items-center rounded-full bg-mint px-5 text-sm font-semibold text-mint-fg hover:brightness-105"
+                className="inline-flex min-h-11 items-center rounded-full bg-brand px-5 text-sm font-semibold text-brand-fg hover:bg-brand-hover active:bg-brand-pressed"
               >
                 Open in your mail app
               </a>
@@ -51,7 +51,7 @@ export default function ContactPage() {
             <ul className="mt-5 space-y-3 text-[15px]">
               {TOPICS.map((t) => (
                 <li key={t} className="flex gap-3">
-                  <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-mint-text" aria-hidden />
+                  <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-brand-text" aria-hidden />
                   {t}
                 </li>
               ))}

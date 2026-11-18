@@ -31,7 +31,7 @@ export function InstallTabs() {
               {opt.steps.map((step, i) => (
                 <li key={step.text} className="space-y-2.5">
                   <p className="flex gap-3 text-[15px] font-medium">
-                    <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-mint text-xs font-bold text-mint-fg">
+                    <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-brand-fg">
                       {i + 1}
                     </span>
                     {step.text}

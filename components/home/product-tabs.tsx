@@ -48,7 +48,7 @@ export function ProductTabs({ tabs }: { tabs: ProductTab[] }) {
             <p className="mt-4 text-base leading-relaxed text-fg-muted sm:text-lg">{t.body}</p>
             <Link
               href={t.href}
-              className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-mint-text hover:underline"
+              className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-brand-text hover:underline"
             >
               Explore {t.label} <ArrowRight className="size-4" aria-hidden />
             </Link>

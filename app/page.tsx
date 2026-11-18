@@ -11,6 +11,7 @@ import { SolutionCards } from "@/components/home/solution-cards";
 import { StatsBand } from "@/components/home/stats-band";
 import { TrustBadges } from "@/components/home/trust-badges";
 import { ValueBento } from "@/components/home/value-bento";
+import { WhatsNew } from "@/components/home/whats-new";
 import { WorksWithStrip } from "@/components/home/works-with";
 import { FloorAndCartScreen } from "@/components/fragments/pos";
 import { Accordion } from "@/components/ui/accordion";
@@ -109,6 +110,16 @@ export default function HomePage() {
 
       <TrustBadges />
 
+      <Section id="whats-new" labelledBy="whats-new-title">
+        <SectionHeading
+          id="whats-new-title"
+          eyebrow="What's new in v1.0"
+          title="Online orders, sharper stock, safer staff access."
+          lead="Everything here has shipped in v1.0 and is in the install you download today."
+        />
+        <WhatsNew />
+      </Section>
+
       <Section id="modules" tone="dark" labelledBy="modules-title">
         <SectionHeading
           id="modules-title"
@@ -188,7 +199,7 @@ export default function HomePage() {
           id="gallery-title"
           eyebrow="Screens"
           title="See it before you install it."
-          lead="Illustrations of the main screens, drawn with sample data. Real screenshots will replace them once they are captured."
+          lead="Real screenshots of the main screens, taken from the app running with a sample restaurant's data."
         />
         <Gallery />
       </Section>
@@ -208,7 +219,7 @@ export default function HomePage() {
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {HOW_IT_WORKS.map((step, i) => (
             <li key={step.title} className="reveal h-full rounded-3xl border border-line bg-card p-6 sm:p-7">
-              <span className="font-mono text-sm font-semibold text-mint-text">0{i + 1}</span>
+              <span className="font-mono text-sm font-semibold text-brand-text">0{i + 1}</span>
               <h3 className="mt-4 text-2xl font-semibold tracking-tight">{step.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-fg-muted">{step.body}</p>
             </li>

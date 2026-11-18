@@ -3,7 +3,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 export default function NotFound() {
   return (
     <section aria-labelledby="nf-title" className="container-x py-24 text-center">
-      <p className="text-mono-tag font-semibold text-mint-text">404 //</p>
+      <p className="text-mono-tag font-semibold text-brand-text">404 //</p>
       <h1 id="nf-title" className="mt-4 text-4xl sm:text-6xl">
         This page is not on the menu.
       </h1>

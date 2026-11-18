@@ -89,7 +89,7 @@ export function PosScreen() {
                 key={c}
                 className={cn(
                   "shrink-0 rounded-full border px-[0.9em] py-[0.3em] text-[0.88em] font-medium",
-                  i === 0 ? "border-mint bg-mint text-mint-fg" : "border-line bg-card text-fg-muted",
+                  i === 0 ? "border-brand bg-brand text-brand-fg" : "border-line bg-card text-fg-muted",
                 )}
               >
                 {c}

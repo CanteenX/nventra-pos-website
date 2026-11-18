@@ -67,7 +67,7 @@ export function FloatingActions() {
           <div className="mt-3 flex flex-wrap gap-2">
             <a
               href={`mailto:${SITE.email}`}
-              className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-mint px-3 text-xs font-semibold text-mint-fg"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-brand px-3 text-xs font-semibold text-brand-fg"
             >
               <Mail className="size-3.5" aria-hidden /> Email us
             </a>

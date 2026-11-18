@@ -15,7 +15,7 @@ export function SiteFooter() {
           </p>
           <a
             href={`mailto:${SITE.email}`}
-            className="mt-4 inline-block text-sm font-medium text-fg underline-offset-4 hover:underline"
+            className="mt-3 inline-flex min-h-10 items-center text-sm font-medium text-fg underline-offset-4 hover:underline"
           >
             {SITE.email}
           </a>
@@ -24,15 +24,15 @@ export function SiteFooter() {
         {FOOTER_COLUMNS.map((col) => (
           <nav key={col.title} aria-label={col.title}>
             <p className="text-mono-tag mb-4 font-semibold text-fg-muted">/{col.title.toLowerCase()}</p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-0.5">
               {col.links.map((link) => (
                 <li key={link.href}>
                   {link.href.startsWith("http") || link.href.startsWith("mailto:") ? (
-                    <a href={link.href} className="break-words text-sm text-fg/85 hover:text-mint-text">
+                    <a href={link.href} className="inline-flex min-h-10 min-w-10 items-center break-words text-sm text-fg/85 hover:text-brand-text">
                       {link.label}
                     </a>
                   ) : (
-                    <Link href={link.href} className="text-sm text-fg/85 hover:text-mint-text">
+                    <Link href={link.href} className="inline-flex min-h-10 min-w-10 items-center text-sm text-fg/85 hover:text-brand-text">
                       {link.label}
                     </Link>
                   )}
