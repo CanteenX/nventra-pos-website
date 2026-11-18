@@ -12,7 +12,7 @@ export const SITE = {
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://nventra-pos-website.vercel.app").replace(/\/$/, ""),
   email: "nventra01@gmail.com",
   sourceRepo: "https://github.com/CanteenX/restaurant-pos",
-  sourceNote: "Source code available to customers on request",
+  sourceNote: "Customers get the complete source code under the AGPL: email us and we'll send it",
   upstream: {
     label: "Based on Nodedr OrderRestro, AGPL-3.0",
     href: "https://github.com/Raktim94/nodedr-restaurant-pos",
