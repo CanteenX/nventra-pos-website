@@ -67,7 +67,7 @@ export const WHATS_NEW: WhatsNewItem[] = [
   },
   {
     title: "Hindi interface",
-    body: "The staff app now speaks Hindi, alongside English, Spanish and French.",
+    body: "The core screens (dashboard, POS, tables, kitchen display, inventory, reports, accounting and settings) are now in Hindi, alongside English, Spanish and French. The remaining pages follow in the next update.",
     icon: Languages,
     href: "/features/#staff",
   },

@@ -126,7 +126,7 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
     icon: UsersRound,
     items: [
       "Staff accounts with granular roles and permissions",
-      "Staff app in English, Hindi, Spanish and French",
+      "Staff app in English, Spanish and French, with Hindi on the core screens",
       "Clock in and out, with manager corrections",
       "Weekly shift schedule with clash warnings",
       "Leave requests and approvals",

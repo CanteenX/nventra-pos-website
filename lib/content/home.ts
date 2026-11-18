@@ -36,7 +36,7 @@ export interface Stat {
 export const STATS: Stat[] = [
   { value: 20, label: "product modules", source: "Module list in the product README" },
   { value: 18, label: "built-in reports", source: "Reports screen" },
-  { value: 4, label: "staff-app languages", source: "English, Hindi, Spanish and French" },
+  { value: 4, label: "staff-app languages", source: "English, Spanish and French, with Hindi on the core screens" },
   { value: 0, prefix: "₹", label: "subscription", source: "Free to self-host under AGPL-3.0" },
   { value: 1, label: "command to install", source: "./install.sh" },
 ];
